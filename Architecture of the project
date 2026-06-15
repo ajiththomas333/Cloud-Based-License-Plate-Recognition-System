@@ -1,0 +1,41 @@
+┌───────────────┐
+│   User Upload │
+│   MP4 Video   │
+└───────┬───────┘
+        │
+        ▼
+┌────────────────────────┐
+│ Amazon S3 Bucket       │
+│ Video Storage          │
+└─────────┬──────────────┘
+          │ S3 Event Trigger
+          ▼
+┌────────────────────────┐
+│ AWS Lambda             │
+│ Extract Bucket & Key   │
+└─────────┬──────────────┘
+          │
+          ▼
+┌────────────────────────┐
+│ Amazon SQS             │
+│ Message Queue          │
+└─────────┬──────────────┘
+          │
+          ▼
+┌────────────────────────┐
+│ ECS Fargate Container  │
+│ Docker + EasyOCR       │
+│ Video Processing       │
+└───────┬────────┬───────┘
+        │        │
+        │        ▼
+        │   ┌──────────────┐
+        │   │ DynamoDB     │
+        │   │ Watchlist    │
+        │   └──────┬───────┘
+        │          │ Match Found
+        ▼          ▼
+┌────────────────────────┐
+│ Amazon SES             │
+│ Email Notification     │
+└────────────────────────┘
